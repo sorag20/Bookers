@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pile-up</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+   <%- include('header');%>
+    <div class="container">
+      <div class="container-header">
+        <h1>勉強中の本</h1>
+        <a href="/register" class="new-button">+ 本の登録</a>
+      </div>
+      <div class="kinds">
+        <li>
+      
+    </li>
+      </div>
+      <ul class="table-body">
+        <span>　　題名</span>
+        <span >　　　総ページ数</span>
+      <span >　　終えたページ数</span>
+      <span >　　割合</span>
+        <% users.forEach((book) => { %>
+        <li>
+            <div class="book-data">
+            <span class="name-column"><%= book.name %></span>
+            <span class="total-pages-column"><%= book.total_pages %></span>
+            <span class="finished-pages-column"><%= book.finished_pages %></span>
+            <% let parcent=book.finished_pages/book.total_pages*100;%>
+            <span class="percent-column"><%=parcent%>%</span>
+            </div>
+            <div class="book-menu">
+                <form action="/delete/<%= book.id %>" method="post">
+                  <input type="submit" value="削除">
+                </form>
+                <a href="/edit/<%= book.id %>">編集</a>
+            </div>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>
